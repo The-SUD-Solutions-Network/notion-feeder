@@ -30,6 +30,12 @@ export async function getFeedUrlsFromNotion() {
               equals: true,
             },
           },
+          {
+            property: 'Fetch All',
+            checkbox: {
+              equals: true,
+            },
+          },
         ],
       },
     });
@@ -41,6 +47,7 @@ export async function getFeedUrlsFromNotion() {
   const feeds = response.results.map((item) => ({
     title: item.properties.Title.title[0].plain_text,
     feedUrl: item.properties.Link.url,
+    fetchAll: item.properties['Fetch All'].checkbox,
   }));
 
   return feeds;
